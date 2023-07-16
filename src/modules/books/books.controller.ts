@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createBook } from './books.service';
+import { createBook, getBooks } from './books.service';
 
 export async function createBookController(req: Request, res: Response) {
    try {
@@ -9,6 +9,37 @@ export async function createBookController(req: Request, res: Response) {
          book: newBook,
       });
    } catch (error) {
-      res.status(500).json({ error: 'Failed to create the book.' });
+      res.status(500).json({
+         error: 'Failed to create the book.',
+         message: error.message,
+      });
+   }
+}
+
+export async function getBooksController(req: Request, res: Response) {
+   try {
+      const { title, author, genre, publicationYear } = req.query;
+      const query: any = {};
+      if (title) query.title = { $regex: title.toString(), $options: 'i' };
+      if (author) query.author = { $regex: author.toString(), $options: 'i' };
+      if (genre) query.genre = { $regex: genre.toString(), $options: 'i' };
+      if (publicationYear) {
+         const startDate = new Date(parseInt(publicationYear.toString()), 0, 1);
+         const endDate = new Date(
+            parseInt(publicationYear.toString()) + 1,
+            0,
+            1,
+         );
+         query.publicationDate = { $gte: startDate, $lt: endDate };
+      }
+
+      const books = await getBooks(query);
+      res.json({ message: 'Books retrieved successfully', books });
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({
+         error: 'Failed to retrieve books',
+         message: error.message,
+      });
    }
 }

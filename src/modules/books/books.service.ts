@@ -8,3 +8,11 @@ export async function createBook(book: IBook) {
    const bookEntry = await BookModel.create(book);
    return bookEntry;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                             Get Books service                             */
+/* -------------------------------------------------------------------------- */
+export async function getBooks(query: any) {
+   const books = await BookModel.find(query);
+   return books;
+}

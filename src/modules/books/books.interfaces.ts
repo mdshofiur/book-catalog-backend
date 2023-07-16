@@ -5,5 +5,7 @@ export interface IBook extends Document {
    author: string;
    genre: string;
    publicationDate: Date;
+   createdAt: Date;
+   updatedAt: Date;
    reviews: string[];
 }
