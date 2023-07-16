@@ -16,3 +16,13 @@ export async function getBooks(query: any) {
    const books = await BookModel.find(query);
    return books;
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                             Get Book service                              */
+/* -------------------------------------------------------------------------- */
+
+export async function getBook(id: string) {
+   const book = BookModel.findById(id);
+   return book;
+}
