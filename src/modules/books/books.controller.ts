@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createBook, getBook, getBooks } from './books.service';
+import { createBook, deleteBook, getBook, getBooks } from './books.service';
 
 export async function createBookController(req: Request, res: Response) {
    try {
@@ -52,6 +52,21 @@ export async function getBookById(req: Request, res: Response) {
       console.error(error);
       res.status(500).json({
          error: 'Failed to retrieve book',
+         message: error.message,
+      });
+   }
+}
+
+// Delete book by id controller
+
+export async function deleteBookById(req: Request, res: Response) {
+   try {
+      const book = await deleteBook(req.params.id);
+      res.json({ message: 'Book deleted successfully', book: book });
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({
+         error: 'Failed to delete book',
          message: error.message,
       });
    }

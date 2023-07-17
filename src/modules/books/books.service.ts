@@ -26,3 +26,12 @@ export async function getBook(id: string) {
    const book = BookModel.findById(id);
    return book;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                             Delete Book service                           */
+/* -------------------------------------------------------------------------- */
+
+export async function deleteBook(id: string) {
+   const book = BookModel.findByIdAndDelete(id);
+   return book;
+}
