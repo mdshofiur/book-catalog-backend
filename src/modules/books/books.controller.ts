@@ -1,6 +1,13 @@
 import { Request, Response } from 'express';
-import { createBook, deleteBook, getBook, getBooks } from './books.service';
+import {
+   createBook,
+   deleteBook,
+   getBook,
+   getBooks,
+   updateBook,
+} from './books.service';
 
+// Create book controller
 export async function createBookController(req: Request, res: Response) {
    try {
       const newBook = await createBook(req.body);
@@ -16,6 +23,7 @@ export async function createBookController(req: Request, res: Response) {
    }
 }
 
+// Get books controller
 export async function getBooksController(req: Request, res: Response) {
    try {
       const { title, author, genre, publicationYear } = req.query;
@@ -44,6 +52,7 @@ export async function getBooksController(req: Request, res: Response) {
    }
 }
 
+// Get book by id controller
 export async function getBookById(req: Request, res: Response) {
    try {
       const book = await getBook(req.params.id);
@@ -58,7 +67,6 @@ export async function getBookById(req: Request, res: Response) {
 }
 
 // Delete book by id controller
-
 export async function deleteBookById(req: Request, res: Response) {
    try {
       const book = await deleteBook(req.params.id);
@@ -67,6 +75,20 @@ export async function deleteBookById(req: Request, res: Response) {
       console.error(error);
       res.status(500).json({
          error: 'Failed to delete book',
+         message: error.message,
+      });
+   }
+}
+
+// Update book by id controller
+export async function updateBookById(req: Request, res: Response) {
+   try {
+      const book = await updateBook(req.params.id, req.body);
+      res.json({ message: 'Book updated successfully', book: book });
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({
+         error: 'Failed to update book',
          message: error.message,
       });
    }

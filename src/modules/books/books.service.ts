@@ -17,7 +17,6 @@ export async function getBooks(query: any) {
    return books;
 }
 
-
 /* -------------------------------------------------------------------------- */
 /*                             Get Book service                              */
 /* -------------------------------------------------------------------------- */
@@ -34,4 +33,13 @@ export async function getBook(id: string) {
 export async function deleteBook(id: string) {
    const book = BookModel.findByIdAndDelete(id);
    return book;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Update Book service                           */
+/* -------------------------------------------------------------------------- */
+
+export async function updateBook(id: string, book: IBook) {
+   const updateBook = BookModel.updateOne({ _id: id }, book);
+   return updateBook;
 }
