@@ -6,6 +6,7 @@ import {
    getBooks,
    updateBook,
 } from './books.service';
+import { BookModel } from './books.model';
 
 // Create book controller
 export async function createBookController(req: Request, res: Response) {
@@ -89,6 +90,22 @@ export async function updateBookById(req: Request, res: Response) {
       console.error(error);
       res.status(500).json({
          error: 'Failed to update book',
+         message: error.message,
+      });
+   }
+}
+
+// Add reviews to book controller
+export async function addReviewToBook(req: Request, res: Response) {
+   try {
+      const book = await BookModel.findById(req.params.id);
+      book.reviews.push(req.body.reviews);
+      await book.save();
+      res.json({ message: 'Review added successfully', book: book });
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({
+         error: 'Failed to add review',
          message: error.message,
       });
    }
