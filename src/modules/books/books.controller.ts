@@ -59,7 +59,6 @@ export async function getBookById(req: Request, res: Response) {
       const book = await getBook(req.params.id);
       res.json({ message: 'Book retrieved successfully', book: book });
    } catch (error) {
-      console.error(error);
       res.status(500).json({
          error: 'Failed to retrieve book',
          message: error.message,
