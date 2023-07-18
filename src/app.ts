@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import bookRouter from './modules/books/books.route';
+import { getBooksController } from './modules/books/books.controller';
 
 const app: Express = express();
 require('dotenv').config();
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/books', bookRouter);
+
+app.get('/books/new/list', getBooksController)
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.send('Hello World!');
