@@ -14,10 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
-const books_route_1 = __importDefault(require("./modules/books/books.route"));
 const port = 2000;
 const uri = "mongodb+srv://testingDatabase:LmlkuPM6zWk6hdW5@cluster0.e7yhr.mongodb.net/cow-hurt?retryWrites=true&w=majority";
-app_1.default.use('/api/books', books_route_1.default);
 app_1.default.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose_1.default.connect(uri);
