@@ -12,7 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(bookRouter);
+app.use('/api/books', bookRouter);
+
+// app.use(bookRouter);
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.send('Hello World!');

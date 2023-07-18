@@ -10,16 +10,17 @@ import {
 
 const bookRouter = express.Router();
 
-bookRouter.post('/api/books', createBookController);
 
-bookRouter.get('/api/books', getBooksController);
+bookRouter.post('/', createBookController);
 
-bookRouter.get('/api/books/book/:id', getBookById);
+bookRouter.get('/', getBooksController);
 
-bookRouter.delete('/api/books/book/:id', deleteBookById);
+bookRouter.get('/:id', getBookById);
 
-bookRouter.put('/api/books/book/:id', updateBookById);
+bookRouter.delete('/:id', deleteBookById);
 
-bookRouter.put('/api/books/book/:id/reviews', addReviewToBook);
+bookRouter.put('/:id', updateBookById);
+
+bookRouter.put('/:id/reviews', addReviewToBook);
 
 export default bookRouter;
