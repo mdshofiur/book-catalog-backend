@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
+import express from 'express';
 import app from './app';
 import bookRouter from './modules/books/books.route';
 
 const port: number = 2000;
-// const uri: any = process.env.DB_URL || 'mongodb://localhost:27017/firstdb';
 const uri: string = "mongodb+srv://testingDatabase:LmlkuPM6zWk6hdW5@cluster0.e7yhr.mongodb.net/cow-hurt?retryWrites=true&w=majority"
 
+app.use('/api/books', bookRouter); // Mount the bookRouter under '/api/books' path
 
 app.listen(port, async () => {
    try {
@@ -16,6 +17,3 @@ app.listen(port, async () => {
       console.log('Database connect error', error);
    }
 });
-
-
-app.use(bookRouter);
