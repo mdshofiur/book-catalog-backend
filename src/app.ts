@@ -20,7 +20,7 @@ app.use(cookieParser());
 // app.put('/api/books/:id', updateBookById);
 // app.put('/api/books/:id/reviews', addReviewToBook);
 
-app.use(bookRouter);
+
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.send('Hello World!');
