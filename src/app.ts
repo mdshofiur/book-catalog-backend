@@ -15,10 +15,6 @@ app.use(cookieParser());
 
 app.use('/api', router);
 
-
-
-app.get('/books/new/list', getBooksController)
-
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.send('Hello World!');
 });
