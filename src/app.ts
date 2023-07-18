@@ -13,14 +13,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.post('/api/books', createBookController);
-app.get('/api/books', getBooksController);
-app.get('/api/books/:id', getBookById);
-app.delete('/api/books/:id', deleteBookById);
-app.put('/api/books/:id', updateBookById);
-app.put('/api/books/:id/reviews', addReviewToBook);
+// app.post('/api/books', createBookController);
+// app.get('/api/books', getBooksController);
+// app.get('/api/books/:id', getBookById);
+// app.delete('/api/books/:id', deleteBookById);
+// app.put('/api/books/:id', updateBookById);
+// app.put('/api/books/:id/reviews', addReviewToBook);
 
-// app.use(bookRouter);
+app.use(bookRouter);
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.send('Hello World!');
