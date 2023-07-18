@@ -8,19 +8,22 @@ import {
    addReviewToBook,
 } from './books.controller';
 
-const bookRouter = express.Router();
+const router = express.Router();
 
 
-bookRouter.post('/', createBookController);
+router.post('/', createBookController);
 
-bookRouter.get('/', getBooksController);
+router.get('/', getBooksController);
 
-bookRouter.get('/:id', getBookById);
+router.get('/:id', getBookById);
 
-bookRouter.delete('/:id', deleteBookById);
+router.delete('/:id', deleteBookById);
 
-bookRouter.put('/:id', updateBookById);
+router.put('/:id', updateBookById);
 
-bookRouter.put('/:id/reviews', addReviewToBook);
+router.put('/:id/reviews', addReviewToBook);
 
-export default bookRouter;
+
+export const booksRouter = router;
+
+
